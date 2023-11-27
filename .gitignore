@@ -1,0 +1,40 @@
+# Node.js
+node_modules/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Environment variables
+.env
+
+# Compiled binary addons (like node-sass)
+/build/Release
+
+# Dependency directories
+/bin/
+/coverage/
+/lib/
+/libexec/
+/node_modules/
+/npm-debug.log
+/out/
+/vendor/
+/.nyc_output/
+
+# Optional: IDE files
+.idea/
+.vscode/
+
+# Optional: macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Optional: Windows
+Thumbs.db
+ehthumbs.db
+
+# Optional: Linux
+*~

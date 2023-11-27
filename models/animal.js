@@ -23,7 +23,13 @@ const AnimalSchema = new Schema({
     price: {
         type:Number,
         required:true
+    },
+    owned: {
+        type:Boolean,
+        required:true,
+        default:false
     }
+    
 })
 
 AnimalSchema.virtual('url').get(function(){
