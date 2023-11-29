@@ -29,7 +29,32 @@
       <p>No categories available at the moment. Check back later!</p>
       <% } %>
 
-      <button><a href="/categories/create">Create new category</a></button>
+      <div class="wrapper">
+        <input id="passwordInput" type="text" placeholder="password">
+        <button id="createButton" disabled class="inactive"><a href="/categories/create">Create new category</a></button>
+      </div>
     </div>
+
+    <script>
+      const passwordInput = document.querySelector("#passwordInput");
+      const createButton = document.querySelector('#createButton')
+      const link = document.querySelector('#createButton>a')
+
+      function prevent(e) {
+        e.preventDefault();
+      }
+
+      passwordInput.addEventListener('input', (e)=> {
+        if (e.target.value === 'password') {
+          createButton.classList.remove('inactive');
+          createButton.removeAttribute(disabled)
+          return
+        }
+        else {
+          createButton.classList.add('inactive');
+          createButton.addAttribute(disabled)
+        }
+      })
+    </script>
   </body>
 </html>

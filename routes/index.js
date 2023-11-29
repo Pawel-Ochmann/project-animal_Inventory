@@ -7,10 +7,10 @@ const animal_controller = require('../controllers/animalController');
 /* GET home page. */
 
 // Category routes
-
-router.get('/categories/:name', category_controller.category_detail_get);
 router.get('/categories/create', category_controller.category_create_get);
 router.post('/categories/create', category_controller.category_create_post);
+router.get('/categories/:name', category_controller.category_detail_get);
+
 router.post(
   '/categories/:name/update',
   category_controller.category_update_post

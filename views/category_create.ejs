@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="title">
+        <h1 class="glowing"><a href="/">Tiny Paws</a></h1>
+        <img class="icon" src="/images/dog.png" alt="" />
+      </div>
+      <div class="nav">
+        <nav>
+          <a href="/categories">Categories</a>
+          <a href="/animals">Animals</a>
+          <a href="/zoo">Your personal ZOO</a>
+        </nav>
+      </div>
+    </header>
+    <h2><%= title %></h2>
+    <form class="categoryForm" action="/categories/create" method="POST">
+      <label for="name">Category Name:</label>
+      <input type="text" id="name" name="name" required />
+
+      <label for="description">Description:</label>
+      <textarea
+        id="description"
+        name="description"
+        rows="4"
+        required
+      ></textarea>
+
+      <% if (errors.length > 0) { %> <% errors.forEach(error => { %>
+      <p><%= error.msg %></p>
+      <% }); } %>
+
+      <button class="glowing" type="submit">Create Category</button>
+    </form>
+  </body>
+</html>
