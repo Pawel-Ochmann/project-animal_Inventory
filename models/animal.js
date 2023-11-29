@@ -33,7 +33,7 @@ const AnimalSchema = new Schema({
 })
 
 AnimalSchema.virtual('url').get(function(){
-    return `/categories/${this._id}`
+    return `/animals/${this._id}`
 })
 
 AnimalSchema.virtual('date_of_birth_formatted').get(function () {

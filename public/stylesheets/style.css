@@ -10,33 +10,41 @@ html {
   font-family: 'Montserrat', sans-serif;
 }
 
-h1,h2,h3,h4 {
-  color:rgb(39,255,130);
+h1,
+h1>a,
+h2>a,
+h2,
+h3>a,
+h3,
+h4 {
+  color: rgb(39, 255, 130);
 }
+
+
 
 a {
   text-decoration: none;
-  color:rgb(189, 189, 189);
+  color: rgb(189, 189, 189);
   text-transform: uppercase;
   font-weight: 700;
 }
 
 body {
- color: white;
- background-color: rgb(0,30,43);
- width: 90%;
- margin:0 auto;
- display: flex;
- flex-direction: column;
- gap:2rem;
+  color: white;
+  background-color: rgb(0, 30, 43);
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .title {
   margin: 2rem 0;
   display: flex;
   justify-content: space-between;
-  border-bottom: 2px solid rgb(39,255,130);
-    &>h1 {
+  border-bottom: 2px solid rgb(39, 255, 130);
+  & > h1 {
     align-self: end;
   }
 }
@@ -44,17 +52,55 @@ body {
 .icon {
   padding: 5px;
   width: 70px;
-  background-color: rgb(39,255,130);
-  border-radius: 10rem 10rem 0 0 
+  background-color: rgb(39, 255, 130);
+  border-radius: 10rem 10rem 0 0;
 }
 
 nav {
- display: flex;
- justify-content: space-around;
- &>a {
-  transition: .3s;
-  &:hover {
-    filter: brightness(1.5);
+  display: flex;
+  justify-content: space-around;
+  & > a {
+    transition: 0.3s;
+    &:hover {
+      filter: brightness(1.5);
+    }
   }
- }
+}
+
+.category_list {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  &>button {
+    width: max-content;
+    transition: .3s;
+    border: none;
+    background-color: rgb(39, 255, 130);
+    padding: .2rem .7rem;
+    &:hover {
+      box-shadow: 0 0 10px rgba(39, 255, 130, 0.8), 0 0 20px rgba(39, 255, 130, 0.6), 0 0 30px rgba(39, 255, 130, 0.4);
+      filter: brightness(1.2);
+    }
+    &>a {
+      color:rgb(0, 30, 43);
+      font-size: 1.2rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+  }
+}
+.category {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border-bottom: 1px solid rgb(39, 255, 130);
+}
+
+.glowing {
+  width: max-content;
+  transition: .3s;
+     &:hover {
+      box-shadow: 0 0 10px rgba(39, 255, 130, 0.8), 0 0 20px rgba(39, 255, 130, 0.6), 0 0 30px rgba(39, 255, 130, 0.4);
+      filter: brightness(1.2);
+    }
 }

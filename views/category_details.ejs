@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="title">
+        <h1 class="glowing"><a href="/">Tiny Paws</a></h1>
+        <img class="icon" src="/images/dog.png" alt="" />
+      </div>
+      <div class="nav">
+        <nav>
+          <a href="/categories">Categories</a>
+          <a href="/animals">Animals</a>
+          <a href="/zoo">Your personal ZOO</a>
+        </nav>
+      </div>
+    </header>
+    <div class="category_details">
+      <h1><%= title  %></h1>
+        <p><%= category.description%> </p>
+    </div>
+    <div class="categoryAnimals">
+        <h2>Animals in this category</h2>
+          <% if (animals.length > 0) { %> <% animals.forEach(animal => { %>
+      <div class="animal">
+        <h3 class="glowing"><a href="<%= animal.url %>"><%= animal.name %></a></h2>
+      </div>
+      <% }); %> <% } else { %>
+      <p>No animals in this category available at the moment. Check back later!</p>
+      <% } %>
+
+    </div>
+  </body>
+</html>

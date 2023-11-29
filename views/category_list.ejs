@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="title">
+        <h1 class="glowing"><a href="/">Tiny Paws</a></h1>
+        <img class="icon" src="/images/dog.png" alt="" />
+      </div>
+      <div class="nav">
+        <nav>
+          <a href="/categories">Categories</a>
+          <a href="/animals">Animals</a>
+          <a href="/zoo">Your personal ZOO</a>
+        </nav>
+      </div>
+    </header>
+    <div class="category_list">
+      <h1><%= title %></h1>
+      <% if (categories.length > 0) { %> <% categories.forEach(category => { %>
+      <div class="category">
+        <h3 class="glowing"><a href="<%= category.url %>"><%= category.name %></a></h2>
+        <p><%= category.description %></p>
+      </div>
+      <% }); %> <% } else { %>
+      <p>No categories available at the moment. Check back later!</p>
+      <% } %>
+
+      <button><a href="/categories/create">Create new category</a></button>
+    </div>
+  </body>
+</html>
