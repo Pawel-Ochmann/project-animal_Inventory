@@ -143,9 +143,13 @@ button.inactive {
     filter: brightness(1);
     background-color: rgb(189, 189, 189);
     pointer-events: none;
-    & > a:hover {
-      cursor: default;
-      pointer-events: none;
-    }
   }
+}
+
+#createButton {
+  color: rgb(0, 30, 43);
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor:pointer;
 }
