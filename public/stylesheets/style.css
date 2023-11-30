@@ -132,6 +132,15 @@ nav {
   font-size: 1.2rem;
 }
 
+.wrapper > button {
+  border: none;
+  padding: 0.2rem 0.7rem;
+  &:not(:disabled) {
+    background-color: rgb(39, 255, 130);
+    cursor: pointer;
+  }
+}
+
 button.inactive {
   filter: grayscale(1);
   & > a:hover {
@@ -141,15 +150,15 @@ button.inactive {
   &:hover {
     box-shadow: none;
     filter: brightness(1);
-    background-color: rgb(189, 189, 189);
     pointer-events: none;
   }
 }
 
-#createButton {
+#createButton,
+#updateButton,
+#deleteButton {
   color: rgb(0, 30, 43);
   font-size: 1.2rem;
   font-weight: 700;
   text-transform: uppercase;
-  cursor:pointer;
 }

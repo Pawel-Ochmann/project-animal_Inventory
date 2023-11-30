@@ -9,6 +9,7 @@ const animal_controller = require('../controllers/animalController');
 // Category routes
 router.get('/categories/create', category_controller.category_create_get);
 router.post('/categories/create', category_controller.category_create_post);
+router.get('/categories/:name/update', category_controller.category_update_get);
 router.get('/categories/:name', category_controller.category_detail_get);
 
 router.post(
@@ -35,6 +36,5 @@ router.post('/animal/:id/delete', animal_controller.animal_delete_post);
 router.get('/', function (req, res, next) {
   res.render('index', { title: 'Animal shop' });
 });
-
 
 module.exports = router;

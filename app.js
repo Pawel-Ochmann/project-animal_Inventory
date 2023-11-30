@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const expressListEndpoints = require('express-list-endpoints')
 require('dotenv').config();
 
 const router = require('./routes/index');
@@ -27,6 +28,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', router);
+console.log(expressListEndpoints(app));
+
 
 app.use(function(req, res, next) {
   next(createError(404));
