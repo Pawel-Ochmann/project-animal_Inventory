@@ -21,21 +21,19 @@
     <h2><%= title %></h2>
     <form class="categoryForm" action="/categories/create" method="POST">
       <label for="name">Category Name:</label>
-      <input type="text" id="name" name="name" required />
+      <input type="text" id="name" name="name" required value= "<%= name %> "
+      />
 
       <label for="description">Description:</label>
-      <textarea
-        id="description"
-        name="description"
-        rows="4"
-        required
-      ></textarea>
+      <textarea id="description" name="description" rows="4" required>
+    <%= description %> 
+</textarea>
 
       <% if (errors.length > 0) { %> <% errors.forEach(error => { %>
       <p><%= error.msg %></p>
       <% }); } %>
 
-      <button class="glowing" type="submit">Create Category</button>
+      <button class="glowing" type="submit"> <%= button %> Category</button>
     </form>
   </body>
 </html>

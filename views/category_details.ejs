@@ -33,10 +33,10 @@
       <% } %>
 
       
-        <form class="wrapper" action= <%= `/categories/${category.name}/update` %> method='get' >
+        <form class="wrapper" action= "<%= `/categories/${category.name}/update` %>" method='get' >
           <input id="passwordInput" type="text" placeholder="password">
           <button id="updateButton" disabled class="inactive glowing" onclick="goUpdate()">Update category  </button>
-            <button id="deleteButton" disabled class="inactive glowing" onclick="goDelete()" formaction=<%= `/categories/${category.name}/delete` %> formmethod='post'> Delete category  </button>
+            <button id="deleteButton" disabled class="inactive glowing" onclick="goDelete()" formaction= "<%= `/categories/${category.name}/delete` %>"   formmethod='post'> Delete category  </button>
         </form>
     </div>
 
@@ -67,9 +67,10 @@
       }
 
       function goUpdate() {
+        console.log('updating')
         window.location.href = '/categories/:name/update';
       }
-       function goUpdate() {
+       function goDelete() {
         window.location.href = '/categories/:name/delete';
       }
     </script>
