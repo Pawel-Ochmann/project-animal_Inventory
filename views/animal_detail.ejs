@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= animal.name %></title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="title">
+        <h1 class="glowing"><a href="/">Tiny Paws</a></h1>
+        <img class="icon" src="/images/dog.png" alt="" />
+      </div>
+      <div class="nav">
+        <nav>
+          <a href="/categories">Categories</a>
+          <a href="/animals">Animals</a>
+          <a href="/zoo">Your personal ZOO</a>
+        </nav>
+      </div>
+    </header>
+
+    <h1><%= animal.name %> Details</h1>
+
+    <p><strong>Category:</strong> <%= animal.category.name %></p>
+
+    <p><strong>Description:</strong> <%= animal.description %></p>
+
+    <p><strong>Date of Birth:</strong> <%= animal.date_of_birth_formatted %></p>
+
+    <p><strong>Price:</strong> $<%= animal.price.toFixed(2) %></p>
+
+    <p><strong>Owned:</strong> <%= animal.owned ? 'Yes' : 'No' %></p>
+
+    <form
+      class="wrapper"
+      action="<%= `/animals/${animal._id}/update` %>"
+      method="get"
+    >
+      <input id="passwordInput" type="text" placeholder="password" />
+      <button
+        id="updateButton"
+        disabled
+        class="inactive glowing"
+      >
+        Update category
+      </button>
+      <button
+        id="deleteButton"
+        disabled
+        class="inactive glowing"
+        formaction="<%= `/animals/${animal._id}/delete` %>"
+        formmethod="post"
+      >
+        Delete category
+      </button>
+    </form>
+
+        <script>
+      const passwordInput = document.querySelector("#passwordInput");
+      const updateButton = document.querySelector('#updateButton');
+      const deleteButton = document.querySelector('#deleteButton')
+
+      passwordInput.addEventListener('input', prevent)
+
+        
+        function prevent(e) {
+          e.preventDefault();
+
+        [updateButton, deleteButton].forEach((button)=> {
+           if (e.target.value === 'password') {
+          button.classList.remove('inactive');
+         if (button.hasAttribute('disabled')) button.removeAttribute('disabled')
+          return
+        }
+        else {
+          button.classList.add('inactive');
+          if (!button.hasAttribute('disabled')) button.setAttribute('disabled', true)
+         }
+        })
+       
+      }
+
+    </script>
+  </body>
+</html>

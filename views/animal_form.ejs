@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title>Update <%= animal.name %></title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
   <body>
@@ -19,32 +19,32 @@
       </div>
     </header>
 
-    <h1><%= title %></h1>
+    <h1>Update: <%= animal.name %></h1>
 
-    <form action="/animals/create" method="POST" class="animalForm">
+    <form action="<%= `/animals/${animal._id}/update` %>" method="POST" class="animalForm">
       <!-- Assuming "animals" is the route for creating a new Animal -->
 
       <label for="name">Name:</label>
-      <input type="text" id="name" name="name" required />
+      <input type="text" id="name" name="name" required value="<%- animal.name %>" />
 
       <label for="category">Category:</label>
       <select id="category" name="category" required>
         <% categories.forEach(category => { %>
-        <option value="<%= category._id %>"><%= category.name %></option>
-        <% }); %>
+         <option value="<%= category._id %>" <% if (category.name === animal.category.name) { %> selected <% } %>><%= category.name %></option>
+  <% }); %>
       </select>
       <!-- You might want to provide a dropdown list or another method to select the category -->
 
       <label for="description">Description:</label>
-      <textarea id="description" name="description" required></textarea>
+      <textarea id="description" name="description" required> <%- animal.description %> </textarea>
 
       <label for="date_of_birth">Date of Birth:</label>
-      <input type="date" id="date_of_birth" name="date_of_birth" required />
+      <input type="date" id="date_of_birth" name="date_of_birth" required value="<%- animal.date_of_birth.toISOString().split('T')[0] %>"  />
 
       <label for="price">Price:</label>
-      <input type="number" id="price" name="price" required />
+      <input type="number" id="price" name="price" required value=<%- animal.price %>  />
 
-      <button type="submit" class="glowing">Create Animal</button>
+      <button type="submit" class="glowing">Update Animal</button>
     </form>
   </body>
 </html>

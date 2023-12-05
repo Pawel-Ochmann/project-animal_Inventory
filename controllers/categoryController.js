@@ -13,9 +13,6 @@ exports.category_detail_get = asyncHandler(async (req, res, next) => {
   const category = await Category.findOne({ name: req.params.name });
   const allAnimals = await Animal.find({ category: category._id }, 'name url');
 
-  console.log(category)
-
-
   res.render('category_details', {
     title: category.name,
     category: category,
@@ -37,12 +34,10 @@ exports.category_create_post = [
   body('name')
     .trim()
     .isLength({ min: 1 })
-    .escape()
     .withMessage('You have to set a name for a new category'),
   body('description')
     .trim()
     .isLength({ min: 1 })
-    .escape()
     .withMessage('Description is required'),
   asyncHandler(async (req, res, next) => {
     const errors = validationResult(req);
