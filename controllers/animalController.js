@@ -4,8 +4,9 @@ const Category = require('../models/category');
 const asyncHandler = require('express-async-handler');
 
 exports.animal_list = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED' );
-})
+  const animals = await Animal.find().populate('category');
+  res.render('animal_list', { title: 'Animals list', animals });
+});
 
 exports.animal_detail_get = asyncHandler(async (req, res, next) => {
   res.send('NOT IMPLEMENTED');
@@ -16,7 +17,7 @@ exports.animal_detail_post = asyncHandler(async (req, res, next) => {
 });
 
 exports.animal_create_get = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED');
+  res.render('animal_create', {title: 'Add new animal'})
 });
 
 exports.animal_create_post = asyncHandler(async (req, res, next) => {

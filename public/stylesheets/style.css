@@ -162,3 +162,52 @@ button.inactive {
   font-weight: 700;
   text-transform: uppercase;
 }
+
+.animalList a {
+  color: rgb(39, 255, 130);
+  text-decoration: underline;
+}
+
+.animalList {
+  & input {
+    background-color: rgb(189, 189, 189);
+    font-size: 1.2rem;
+  }
+  & form button {
+    border: none;
+    padding: 0.2rem 0.7rem;
+    &:not(:disabled) {
+      background-color: rgb(39, 255, 130);
+      cursor: pointer;
+    }
+  }
+}
+
+.animalForm {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 1.2rem;
+  & input {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+  }
+  & input[type='date'] {
+    width: 8rem;
+  }
+  & input[type='number'] {
+    width: 4rem;
+  }
+  & .glowing {
+    color: rgb(0, 30, 43);
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    border: none;
+    padding: .1rem .5rem;
+    background-color: rgb(39, 255, 130);
+    cursor: pointer;
+  }
+}

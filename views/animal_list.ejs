@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="title">
+        <h1 class="glowing"><a href="/">Tiny Paws</a></h1>
+        <img class="icon" src="/images/dog.png" alt="" />
+      </div>
+      <div class="nav">
+        <nav>
+          <a href="/categories">Categories</a>
+          <a href="/animals">Animals</a>
+          <a href="/zoo">Your personal ZOO</a>
+        </nav>
+      </div>
+    </header>
+     <div class="animalList">
+       <h1>Animal List</h1>
+       
+           <% if (animals.length === 0) { %>
+          <p>No animals available.</p>
+           <% } else { %>
+          <ul>
+              <% animals.forEach(function(animal) { %>
+                  <li>
+                      <strong>Name:</strong> <a class="glowing" href=" <%= animal.url  %> "><%= animal.name %></a><br>
+                      <strong>Category:</strong> <a class="glowing" href=" <%= animal.category.url %> "><%= animal.category.name %></a><br>
+                      <strong>Price:</strong> $<%= animal.price.toFixed(2) %>
+                  </li>
+                  <br>
+              <% }); %>
+          </ul>
+           <% } %>
+
+           
+        <form action="/animals/create" method="get">
+          <input id="passwordInput" type="text" placeholder="password">
+          <button id="createButton" disabled class="inactive glowing"> Add new Animal </button>
+        </form>
+      
+     </div>
+
+    <script>
+          passwordInput.addEventListener('input', (e)=> {
+        if (e.target.value === 'password') {
+          createButton.classList.remove('inactive');
+         if (createButton.hasAttribute('disabled')) createButton.removeAttribute('disabled')
+          return
+        }
+        else {
+          createButton.classList.add('inactive');
+          if (!createButton.hasAttribute('disabled')) createButton.setAttribute('disabled', true)
+        }
+      })
+    </script>
+  </body>
+</html>

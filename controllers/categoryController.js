@@ -106,7 +106,7 @@ exports.category_update_post = [
       });
       return;
     } else {
-      await Category.findOneAndUpdate(
+      const newCategory = await Category.findOneAndUpdate(
         { name: req.params.name },
         {
           name: req.body.name,

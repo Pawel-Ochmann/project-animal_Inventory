@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="title">
+        <h1 class="glowing"><a href="/">Tiny Paws</a></h1>
+        <img class="icon" src="/images/dog.png" alt="" />
+      </div>
+      <div class="nav">
+        <nav>
+          <a href="/categories">Categories</a>
+          <a href="/animals">Animals</a>
+          <a href="/zoo">Your personal ZOO</a>
+        </nav>
+      </div>
+    </header>
+
+    <h1> <%= title %> </h1>
+    
+    <form action="/animal/:id/create" method="POST" class="animalForm">
+        <!-- Assuming "animals" is the route for creating a new Animal -->
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="category">Category:</label>
+        <input type="text" id="category" name="category" required>
+        <!-- You might want to provide a dropdown list or another method to select the category -->
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" required></textarea>
+
+        <label for="date_of_birth">Date of Birth:</label>
+        <input type="date" id="date_of_birth" name="date_of_birth" required>
+
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" required>
+
+        <button type="submit" class="glowing">Create Animal</button>
+    </form>
+  </body>
+</html>
