@@ -85,12 +85,72 @@ exports.animal_update_get = asyncHandler(async(req, res, next) => {
     res.render('animal_form', { animal , categories });
 })
 
-exports.animal_update_post = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED');
-});
+exports.animal_update_post = exports.animal_create_post = [
+  body('name')
+    .trim()
+    .isLength({ min: 1 })
+    .withMessage('You have to set a name for a new animal'),
+  body('category')
+    .trim()
+    .isLength({ min: 1 })
+    .withMessage('Category is required'),
+  body('description')
+    .trim()
+    .isLength({ min: 1 })
+    .withMessage('Description is required'),
+  body('date_of_birth').isISO8601().toDate().withMessage('Invalid date format'),
+  body('price').isNumeric().withMessage('Price must be a number'),
+  asyncHandler(async (req, res, next) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      // Handle validation errors
+      // You may want to customize this based on your needs
+      res.render('animal_create', {
+        title: 'Create an animal',
+        name: req.body.name,
+        category: req.body.category,
+        description: req.body.description,
+        date_of_birth: req.body.date_of_birth,
+        price: req.body.price,
+        errors: errors.array(),
+      });
+      return;
+    }
+
+    // Data from form is valid.
+    const categorySelected = await Category.findOne({ _id: req.body.category });
+
+    const updatedAnimal = new Animal({
+      name: req.body.name,
+      category: categorySelected._id,
+      description: req.body.description,
+      date_of_birth: req.body.date_of_birth,
+      price: req.body.price,
+      _id:req.params.id
+    });
+
+    // Save animal.
+    await Animal.findByIdAndUpdate(req.params.id, updatedAnimal);
+
+    // Redirect to the new animal record.
+    res.redirect(updatedAnimal.url);
+  }),
+];
 
 exports.animal_delete_post = asyncHandler(async (req, res, next) => {
   await Animal.findByIdAndDelete(req.params.id);
 
   res.redirect('/animals');
 });
+
+exports.animal_purchase_get = asyncHandler(async (req, res, next )=> {
+  await Animal.findByIdAndUpdate(req.params.id, {owned:true});
+  res.redirect('/animals')
+})
+
+exports.zoo = asyncHandler( async (req, res, next)=> {
+  const animalsOwned = await Animal.find({owned:true});
+
+  res.render('zoo', {animals:animalsOwned});
+})

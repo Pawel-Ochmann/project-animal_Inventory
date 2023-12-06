@@ -206,8 +206,40 @@ button.inactive {
     font-weight: 700;
     text-transform: uppercase;
     border: none;
-    padding: .1rem .5rem;
+    padding: 0.1rem 0.5rem;
     background-color: rgb(39, 255, 130);
     cursor: pointer;
   }
+}
+
+.buy > a {
+  color: rgb(39, 255, 130);
+  transition: 0.3s;
+  &:hover {
+    text-shadow: 0 0 10px rgba(39, 255, 130, 0.8),
+      0 0 20px rgba(39, 255, 130, 0.6), 0 0 30px rgba(39, 255, 130, 0.4);
+    filter: brightness(1.2);
+  }
+}
+
+svg {
+  fill: rgb(39, 255, 130);
+  transition: 0.3s;
+}
+
+.buy:hover svg {
+  filter: drop-shadow(
+      0 0 10px rgba(39, 255, 130, 0.8),
+      0 0 20px rgba(39, 255, 130, 0.6),
+      0 0 30px rgba(39, 255, 130, 0.4)
+    )
+    brightness(1.2);
+  transform: scale(1.1);
+}
+
+.owned {
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  color:red;
+  font-weight: 300;
 }

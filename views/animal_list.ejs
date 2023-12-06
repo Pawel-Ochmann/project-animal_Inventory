@@ -18,44 +18,55 @@
         </nav>
       </div>
     </header>
-     <div class="animalList">
-       <h1>Animal List</h1>
-       
-           <% if (animals.length === 0) { %>
-          <p>No animals available.</p>
-           <% } else { %>
-          <ul>
-              <% animals.forEach(function(animal) { %>
-                  <li>
-                      <strong>Name:</strong> <a class="glowing" href=" <%= animal.url  %> "><%= animal.name %></a><br>
-                      <strong>Category:</strong> <a class="glowing" href=" <%= animal.category.url %> "><%= animal.category.name %></a><br>
-                      <strong>Price:</strong> $<%= animal.price.toFixed(2) %>
-                  </li>
-                  <br>
-              <% }); %>
-          </ul>
-           <% } %>
+    <div class="animalList">
+      <h1>Animal List</h1>
 
-           
-        <form action="/animals/create" method="get">
-          <input id="passwordInput" type="text" placeholder="password">
-          <button id="createButton" disabled class="inactive glowing"> Add new Animal </button>
-        </form>
-      
-     </div>
+      <% if (animals.length === 0) { %>
+      <p>No animals available.</p>
+      <% } else { %>
+      <ul>
+        <% animals.forEach(function(animal) { %>
+        <li>
+          <strong>Name:</strong>
+          <a class="glowing" href=" <%= animal.url  %> "><%= animal.name %></a
+          ><br />
+          <strong>Category:</strong>
+          <a class="glowing" href=" <%= animal.category.url %> "
+            ><%= animal.category.name %></a
+          ><br />
+
+          <% if (animal.owned) { %>
+          <p class="owned"><strong>purchased</strong></p>
+          <% } else { %>
+          <p><strong>Price:</strong> $<%= animal.price.toFixed(2) %></p>
+          <% } %>
+        </li>
+        <br />
+        <% }); %>
+      </ul>
+      <% } %>
+
+      <form action="/animals/create" method="get">
+        <input id="passwordInput" type="text" placeholder="password" />
+        <button id="createButton" disabled class="inactive glowing">
+          Add new Animal
+        </button>
+      </form>
+    </div>
 
     <script>
-          passwordInput.addEventListener('input', (e)=> {
+      passwordInput.addEventListener('input', (e) => {
         if (e.target.value === 'password') {
           createButton.classList.remove('inactive');
-         if (createButton.hasAttribute('disabled')) createButton.removeAttribute('disabled')
-          return
-        }
-        else {
+          if (createButton.hasAttribute('disabled'))
+            createButton.removeAttribute('disabled');
+          return;
+        } else {
           createButton.classList.add('inactive');
-          if (!createButton.hasAttribute('disabled')) createButton.setAttribute('disabled', true)
+          if (!createButton.hasAttribute('disabled'))
+            createButton.setAttribute('disabled', true);
         }
-      })
+      });
     </script>
   </body>
 </html>

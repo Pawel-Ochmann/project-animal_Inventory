@@ -7,6 +7,9 @@ const animal_controller = require('../controllers/animalController');
 /* GET home page. */
 
 // Category routes
+
+router.get('/zoo', animal_controller.zoo)
+
 router.get('/categories/create', category_controller.category_create_get);
 router.post('/categories/create', category_controller.category_create_post);
 router.get('/categories/:name/update', category_controller.category_update_get);
@@ -24,6 +27,7 @@ router.post(
 router.get('/categories', category_controller.category_list);
 
 //Animals routes
+router.get('/animals/:id/purchase', animal_controller.animal_purchase_get);
 router.get('/animals/:id/update', animal_controller.animal_update_get);
 router.post('/animals/:id/update', animal_controller.animal_update_post);
 router.post('/animals/:id/delete', animal_controller.animal_delete_post);
