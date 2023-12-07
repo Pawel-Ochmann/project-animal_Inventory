@@ -1,6 +1,7 @@
 const Animal = require('../models/animal');
 const Category = require('../models/category');
 const { body, validationResult } = require('express-validator');
+const fs = require('fs').promises;
 
 const asyncHandler = require('express-async-handler');
 
@@ -10,13 +11,14 @@ exports.animal_list = asyncHandler(async (req, res, next) => {
 });
 
 exports.animal_detail_get = asyncHandler(async (req, res, next) => {
-  const animal = await Animal.findById(req.params.id);
+  const animal = await Animal.findById(req.params.id).populate('category');
 
-  res.render('animal_detail', { animal });
-});
-
-exports.animal_detail_post = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED');
+  try {
+    await fs.access('public/images/pupy.jpg', fs.constants.R_OK);
+    res.render('animal_detail', { animal, fileExists: true });
+  } catch (error) {
+    res.render('animal_detail', { animal, fileExists: false });
+  }
 });
 
 exports.animal_create_get = asyncHandler(async (req, res, next) => {
@@ -77,13 +79,12 @@ exports.animal_create_post = [
   }),
 ];
 
-exports.animal_update_get = asyncHandler(async(req, res, next) => {
-    const categories = await Category.find({}, 'name');
-    const animal = await Animal.findById(req.params.id).populate("category")
-    console.log(animal);
+exports.animal_update_get = asyncHandler(async (req, res, next) => {
+  const categories = await Category.find({}, 'name');
+  const animal = await Animal.findById(req.params.id).populate('category');
 
-    res.render('animal_form', { animal , categories });
-})
+  res.render('animal_form', { animal, categories });
+});
 
 exports.animal_update_post = exports.animal_create_post = [
   body('name')
@@ -120,6 +121,7 @@ exports.animal_update_post = exports.animal_create_post = [
 
     // Data from form is valid.
     const categorySelected = await Category.findOne({ _id: req.body.category });
+    const isOwned = await Animal.findById(req.params.id);
 
     const updatedAnimal = new Animal({
       name: req.body.name,
@@ -127,7 +129,8 @@ exports.animal_update_post = exports.animal_create_post = [
       description: req.body.description,
       date_of_birth: req.body.date_of_birth,
       price: req.body.price,
-      _id:req.params.id
+      owned: isOwned.owned,
+      _id: req.params.id,
     });
 
     // Save animal.
@@ -144,13 +147,13 @@ exports.animal_delete_post = asyncHandler(async (req, res, next) => {
   res.redirect('/animals');
 });
 
-exports.animal_purchase_get = asyncHandler(async (req, res, next )=> {
-  await Animal.findByIdAndUpdate(req.params.id, {owned:true});
-  res.redirect('/animals')
-})
+exports.animal_purchase_get = asyncHandler(async (req, res, next) => {
+  await Animal.findByIdAndUpdate(req.params.id, { owned: true });
+  res.redirect('/animals');
+});
 
-exports.zoo = asyncHandler( async (req, res, next)=> {
-  const animalsOwned = await Animal.find({owned:true});
+exports.zoo = asyncHandler(async (req, res, next) => {
+  const animalsOwned = await Animal.find({ owned: true }).populate('category');
 
-  res.render('zoo', {animals:animalsOwned});
-})
+  res.render('zoo', { animals: animalsOwned });
+});

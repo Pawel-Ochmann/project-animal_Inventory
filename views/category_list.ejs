@@ -22,8 +22,8 @@
       <h1><%= title %></h1>
       <% if (categories.length > 0) { %> <% categories.forEach(category => { %>
       <div class="category">
-        <h3 class="glowing"><a href="<%= category.url %>"><%= category.name %></a></h2>
-        <p><%= category.description %></p>
+        <h3 class="glowing"><a href="<%= category.url %>"><%- category.name %></a></h2>
+        <p><%- category.description %></p>
       </div>
       <% }); %> <% } else { %>
       <p>No categories available at the moment. Check back later!</p>
@@ -31,7 +31,7 @@
 
       <div class="wrapper">
         <input id="passwordInput" type="text" placeholder="password">
-        <button id="createButton" disabled class="inactive" onclick="goCreate()">Create new category  </button>
+        <button id="createButton" disabled class="inactive glowing" onclick="goCreate()">Create new category  </button>
       </div>
     </div>
 

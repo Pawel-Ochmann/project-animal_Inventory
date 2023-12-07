@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title>Zoo</title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
   <body>
@@ -19,7 +19,7 @@
       </div>
     </header>
     <div class="animalList">
-      <h1>Animal List</h1>
+      <h1>You already have: </h1>
 
       <% if (animals.length === 0) { %>
       <p>No animals available.</p>
@@ -27,33 +27,21 @@
       <ul>
         <% animals.forEach(function(animal) { %>
         <li>
-          <div class="animalText">
-            <strong>Name:</strong>
-            <a class="glowing" href=" <%= animal.url  %> "><%= animal.name %></a
-            ><br />
-            <strong>Category:</strong>
-            <a class="glowing" href=" <%= animal.category.url %> "
-              ><%= animal.category.name %></a
-            ><br />
-            <% if (animal.owned) { %>
-            <p class="owned"><strong>purchased</strong></p>
-            <% } else { %>
-            <p><strong>Price:</strong> $<%= animal.price.toFixed(2) %></p>
-            <% } %>
-          </div>
-          <div class="animalImage"> <img src="/images/puppy.jpg" alt=""> </div>
+          <h2><%= animal.name %></h2>
+
+          <p><strong>Category:</strong> <%= animal.category.name %></p>
+
+          <p><strong>Description:</strong> <%= animal.description %></p>
+
+          <p>
+            <strong>Date of Birth:</strong> <%= animal.date_of_birth_formatted
+            %>
+          </p>
         </li>
         <br />
         <% }); %>
       </ul>
       <% } %>
-
-      <form action="/animals/create" method="get">
-        <input id="passwordInput" type="text" placeholder="password" />
-        <button id="createButton" disabled class="inactive glowing">
-          Add new Animal
-        </button>
-      </form>
     </div>
 
     <script>

@@ -3,12 +3,13 @@ var router = express.Router();
 
 const category_controller = require('../controllers/categoryController');
 const animal_controller = require('../controllers/animalController');
+const image_controller = require('../controllers/imageController');
 
 /* GET home page. */
 
 // Category routes
 
-router.get('/zoo', animal_controller.zoo)
+router.get('/zoo', animal_controller.zoo);
 
 router.get('/categories/create', category_controller.category_create_get);
 router.post('/categories/create', category_controller.category_create_post);
@@ -34,11 +35,12 @@ router.post('/animals/:id/delete', animal_controller.animal_delete_post);
 router.get('/animals/create', animal_controller.animal_create_get);
 router.post('/animals/create', animal_controller.animal_create_post);
 router.get('/animals/:id', animal_controller.animal_detail_get);
-router.post('/animals/:id', animal_controller.animal_detail_post);
 router.get('/animals', animal_controller.animal_list);
 
 router.get('/', function (req, res, next) {
   res.render('index', { title: 'Animal shop' });
 });
+
+router.post('/upload', image_controller.handleUpload);
 
 module.exports = router;

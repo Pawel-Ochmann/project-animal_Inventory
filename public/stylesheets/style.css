@@ -35,6 +35,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  margin-bottom: 2rem;
 }
 
 .title {
@@ -70,15 +71,6 @@ nav {
   flex-direction: column;
   gap: 4rem;
   & button {
-    width: max-content;
-    border: none;
-    background-color: rgb(39, 255, 130);
-    padding: 0.2rem 0.7rem;
-    &:hover {
-      box-shadow: 0 0 10px rgba(39, 255, 130, 0.8),
-        0 0 20px rgba(39, 255, 130, 0.6), 0 0 30px rgba(39, 255, 130, 0.4);
-      filter: brightness(1.2);
-    }
     & a {
       color: rgb(0, 30, 43);
       font-size: 1.2rem;
@@ -240,6 +232,49 @@ svg {
 .owned {
   font-size: 1.1rem;
   text-transform: uppercase;
-  color:red;
+  color: red;
   font-weight: 300;
+}
+
+.animalList li {
+  width: 30rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  & img {
+    height: 4rem;
+  }
+}
+
+.animalImage {
+  border: 2px solid rgb(39, 255, 130);
+  padding: 1rem;
+  width: min-content;
+  & img {
+    max-width: 500px;
+  }
+  & svg {
+    fill: rgb(39, 255, 130);
+    height: 3rem;
+  }
+  & button {
+    color: rgb(0, 30, 43);
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    border: none;
+    padding: 0.1rem 0.5rem;
+    background-color: rgb(39, 255, 130);
+    cursor: pointer;
+    transition: 0.3s;
+    &:hover {
+      box-shadow: 0 0 10px rgba(39, 255, 130, 0.8),
+        0 0 20px rgba(39, 255, 130, 0.6), 0 0 30px rgba(39, 255, 130, 0.4);
+      filter: brightness(1.2);
+    }
+  }
+  & input {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+  }
 }
