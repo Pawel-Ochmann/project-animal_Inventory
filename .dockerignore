@@ -13,6 +13,7 @@ npm-debug.log*
 /build/Release
 
 # Dependency directories
+/bin/
 /coverage/
 /lib/
 /libexec/

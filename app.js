@@ -21,6 +21,7 @@ main().catch((err) => {
   console.log(err);
 });
 async function main() {
+  console.log('connecting')
   await mongoose.connect(mongoDB);
 }
 
