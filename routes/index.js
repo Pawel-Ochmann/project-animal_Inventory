@@ -41,6 +41,6 @@ router.get('/', function (req, res, next) {
   res.render('index', { title: 'Animal shop' });
 });
 
-router.post('/upload', image_controller.handleUpload);
+router.post('/upload/:id', image_controller.handleUpload);
 
 module.exports = router;

@@ -17,6 +17,7 @@ exports.category_detail_get = asyncHandler(async (req, res, next) => {
     title: category.name,
     category: category,
     animals: allAnimals,
+    error: null,
   });
 });
 
@@ -117,6 +118,18 @@ exports.category_update_post = [
 ];
 
 exports.category_delete_post = asyncHandler(async (req, res, next) => {
-  await Category.findOneAndDelete({ name: req.params.name });
-  res.redirect('/categories');
+  const category  = await  Category.findOne({ name: req.params.name })
+  const categoryAnimals = await Animal.find({ category:  category._id})
+
+  console.log(categoryAnimals)
+
+  if (categoryAnimals.length > 0) {
+    res.render('category_details', {
+      title: category.name,
+      category: category,
+      animals: categoryAnimals,
+      error: 'You cannot delete a category that has animals assigned to it.',
+    });
+  } else { await Category.findOneAndDelete({ name: req.params.name });
+  res.redirect('/categories'); }
 });

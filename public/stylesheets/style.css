@@ -278,3 +278,16 @@ svg {
     font-size: 1.1rem;
   }
 }
+
+.animalListImage {
+  border: 2px solid rgb(39, 255, 130);
+  min-width: 3rem;
+  background-image: url('/images/image.svg');
+  & svg {
+    fill: rgb(189, 189, 189);
+  }
+}
+
+.errors {
+  color: red;
+}

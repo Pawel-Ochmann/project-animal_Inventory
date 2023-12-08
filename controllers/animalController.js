@@ -13,10 +13,12 @@ exports.animal_list = asyncHandler(async (req, res, next) => {
 exports.animal_detail_get = asyncHandler(async (req, res, next) => {
   const animal = await Animal.findById(req.params.id).populate('category');
 
+  console.log(animal);
   try {
-    await fs.access('public/images/pupy.jpg', fs.constants.R_OK);
+    await fs.access(`public/uploads/${req.params.id}`, fs.constants.R_OK);
     res.render('animal_detail', { animal, fileExists: true });
   } catch (error) {
+    console.log('not exist', req.params.id);
     res.render('animal_detail', { animal, fileExists: false });
   }
 });
@@ -86,7 +88,7 @@ exports.animal_update_get = asyncHandler(async (req, res, next) => {
   res.render('animal_form', { animal, categories });
 });
 
-exports.animal_update_post = exports.animal_create_post = [
+exports.animal_update_post = [
   body('name')
     .trim()
     .isLength({ min: 1 })
@@ -121,7 +123,7 @@ exports.animal_update_post = exports.animal_create_post = [
 
     // Data from form is valid.
     const categorySelected = await Category.findOne({ _id: req.body.category });
-    const isOwned = await Animal.findById(req.params.id);
+    let isOwned = await Animal.findById(req.params.id);
 
     const updatedAnimal = new Animal({
       name: req.body.name,
@@ -144,6 +146,14 @@ exports.animal_update_post = exports.animal_create_post = [
 exports.animal_delete_post = asyncHandler(async (req, res, next) => {
   await Animal.findByIdAndDelete(req.params.id);
 
+  try {
+    await fs.access(`public/uploads/${req.params.id}`, fs.constants.R_OK);
+    fs.unlink(`public/uploads/${req.params.id}`, () => {
+      console.log('file deleted');
+    }); // Moved outside the fs.unlink callback
+  } catch (error) {
+    console.log('file does not exist');
+  }
   res.redirect('/animals');
 });
 

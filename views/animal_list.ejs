@@ -41,7 +41,7 @@
             <p><strong>Price:</strong> $<%= animal.price.toFixed(2) %></p>
             <% } %>
           </div>
-          <div class="animalImage"> <img src="/images/puppy.jpg" alt=""> </div>
+          <div class="animalListImage"> <img src="<%= `/uploads/${animal._id}` %>" alt=""> </div>
         </li>
         <br />
         <% }); %>

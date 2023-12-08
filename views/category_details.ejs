@@ -38,6 +38,7 @@
           <button id="updateButton" disabled class="inactive glowing" onclick="goUpdate()">Update category  </button>
             <button id="deleteButton" disabled class="inactive glowing" onclick="goDelete()" formaction= "<%= `/categories/${category.name}/delete` %>"   formmethod='post'> Delete category  </button>
         </form>
+        <% if (error) { %> <p class="errors"> <%- error %> </p> <% } %>
     </div>
 
     <script>
